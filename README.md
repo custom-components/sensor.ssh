@@ -36,7 +36,7 @@ sensor:
 
 **host**
 
-  (string)(Required) The hostname or IP address of your controller
+  (string)(Required) The hostname or IP address of the remote server
 
 **username**
 
