@@ -20,7 +20,7 @@ from homeassistant.const import (
     CONF_VALUE_TEMPLATE, CONF_COMMAND, CONF_PORT,
     STATE_UNKNOWN)
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 REQUIREMENTS = ['pexpect==4.6.0']
 
 _LOGGER = logging.getLogger(__name__)
@@ -111,7 +111,7 @@ class SSHSensor(Entity):
             else:
                 self._state = value
 
-            _LOGGER.error(self._state)
+            _LOGGER.debug(self._state)
 
         except pxssh.ExceptionPxssh as err:
             _LOGGER.error("Unexpected SSH error: %s", str(err))
