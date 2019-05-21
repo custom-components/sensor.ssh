@@ -1,0 +1,4 @@
+[
+  "https://raw.githubusercontent.com/custom-components/sensor.ssh/master/custom_components/ssh/manifest.json",
+  "https://raw.githubusercontent.com/custom-components/sensor.ssh/master/custom_components/ssh/__init__.py"
+]
