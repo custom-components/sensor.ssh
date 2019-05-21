@@ -1,0 +1,8 @@
+{
+        "domain": "ssh",
+        "name": "ssh",
+        "documentation": "https://github.com/custom-components/sensor.ssh",
+        "requirements": [],
+        "dependencies": [],
+        "codeowners": ["@jchasey"]
+}
