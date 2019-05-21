@@ -20,7 +20,7 @@ from homeassistant.const import (
     CONF_VALUE_TEMPLATE, CONF_COMMAND, CONF_PORT,
     STATE_UNKNOWN)
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 REQUIREMENTS = ['pexpect==4.6.0']
 
 _LOGGER = logging.getLogger(__name__)
