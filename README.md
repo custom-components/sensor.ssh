@@ -8,7 +8,6 @@ Login to a remote server via ssh, execute a command and retrieve the result as s
 To get started download
 ```
 /custom_components/ssh/__init__.py
-/custom_components/ssh/manifest.json
 /custom_components/ssh/sensor.py
 
 ```
