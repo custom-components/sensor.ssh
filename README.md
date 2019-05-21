@@ -1,17 +1,20 @@
 # sensor.ssh
 Generic SSH based sensor
   
-[![Version](https://img.shields.io/badge/version-0.2.0-green.svg?style=for-the-badge)](#) [![mantained](https://img.shields.io/maintenance/yes/2019.svg?style=for-the-badge)](#) [![forum](https://img.shields.io/badge/forum-visit-orange.svg?style=for-the-badge)](https://community.home-assistant.io/t/unifi-security-gateway/71505)   
+[![Version](https://img.shields.io/badge/version-0.2.1-green.svg?style=for-the-badge)](#) [![mantained](https://img.shields.io/maintenance/yes/2019.svg?style=for-the-badge)](#) [![forum](https://img.shields.io/badge/forum-visit-orange.svg?style=for-the-badge)](https://community.home-assistant.io/t/unifi-security-gateway/71505)   
 
 Login to a remote server via ssh, execute a command and retrieve the result as sensor value
 
 To get started download
 ```
+/custom_components/ssh/__init__.py
+/custom_components/ssh/manifest.json
 /custom_components/ssh/sensor.py
+
 ```
 into
 ```
-<config directory>/custom_components/ssh/sensor.py
+<config directory>/custom_components/ssh/
 ```
 
 **Example configuration.yaml:**
