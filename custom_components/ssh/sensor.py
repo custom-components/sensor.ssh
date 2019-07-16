@@ -18,7 +18,7 @@ from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (
     CONF_NAME, CONF_HOST, CONF_USERNAME, CONF_PASSWORD,
     CONF_VALUE_TEMPLATE, CONF_COMMAND, CONF_PORT,
-    STATE_UNKNOWN)
+    STATE_UNKNOWN, CONF_UNIT_OF_MEASUREMENT)
 
 __version__ = '0.1.2'
 REQUIREMENTS = ['pexpect==4.6.0']
