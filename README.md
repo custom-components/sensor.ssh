@@ -19,16 +19,17 @@ into
 **Example configuration.yaml:**
 
 ```yaml
-# Example configuration.yaml entry to return the first 3 lines of the specified command
 sensor:
   - platform: ssh
-    host: 192.168.0.1
-    username: username
-    password: password
-    command: 'show vpn ipsec sa'
-    value_template: >-
-      {%- set line = value.split("\r\n") -%}
-      {{ line[1] + line[2] + line[3] }}
+      host: !secret proxmox_host
+      name: 'NUC CPU Temp'
+      username: !secret proxmox_user
+      password: !secret proxmox_pass
+      command: "sensors | grep 'Package id 0:' | cut -c17-20"
+      value_template: >-
+        {%- set line = value.split("\r\n") -%}
+        {{ line[1] }}
+      unit_of_measurement: "ºC"
 ```
 ### Configuration Variables
 
