@@ -2,7 +2,7 @@
         "domain": "ssh",
         "name": "ssh",
         "documentation": "https://github.com/custom-components/sensor.ssh",
-        "requirements": [],
+        "requirements": ['pexpect==4.6.0'],
         "dependencies": [],
         "codeowners": ["@jchasey"]
 }
