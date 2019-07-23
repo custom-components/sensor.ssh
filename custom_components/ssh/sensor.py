@@ -20,8 +20,7 @@ from homeassistant.const import (
     CONF_VALUE_TEMPLATE, CONF_COMMAND, CONF_PORT,
     STATE_UNKNOWN, CONF_UNIT_OF_MEASUREMENT)
 
-__version__ = '0.1.2'
-REQUIREMENTS = ['pexpect==4.6.0']
+__version__ = '0.1.3'
 
 _LOGGER = logging.getLogger(__name__)
 DOMAIN = 'sensor'
@@ -51,7 +50,6 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
 
 
 class SSHSensor(Entity):
-    """This class queries Unifi gateway via SSH for VPN status."""
 
     def __init__(self, hass, config):
         """Initialize the scanner."""
