@@ -39,6 +39,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_COMMAND): cv.string,
     vol.Required(CONF_UNIT_OF_MEASUREMENT): cv.string,
     vol.Optional(CONF_VALUE_TEMPLATE): cv.template,
+    vol.Optional(CONF_SCAN, default=MIN_TIME_BETWEEN_UPDATES): cv.string,
 })
 
 @asyncio.coroutine
@@ -61,6 +62,7 @@ class SSHSensor(Entity):
         self._command = config.get(CONF_COMMAND)
         self._value_template = config.get(CONF_VALUE_TEMPLATE)
         self._unit_of_measurement = config.get(CONF_UNIT_OF_MEASUREMENT)
+        self._scan = config.get(CONF_SCAN)
         self._ssh = None
         self._connected = False
         self._connect()
@@ -94,7 +96,12 @@ class SSHSensor(Entity):
         """Return the unit of measurement of this entity, if any."""
         return self._unit_of_measurement
     
-    @Throttle(MIN_TIME_BETWEEN_UPDATES)
+    @property
+    def scan(self):
+        """Return the period between executions, if any."""
+        return self._scan
+    
+    @Throttle(self._scan)
     def update(self):
         from pexpect import pxssh, exceptions
 
@@ -128,7 +135,7 @@ class SSHSensor(Entity):
             return None
 
     def _connect(self):
-        """Connect to the Unifi AP SSH server."""
+        """Connect to the SSH server."""
         from pexpect import pxssh, exceptions
 
         self._ssh = pxssh.pxssh()
