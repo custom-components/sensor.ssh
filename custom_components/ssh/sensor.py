@@ -108,7 +108,7 @@ class SSHSensor(Entity):
             self._ssh.sendline(self._command)
             self._ssh.prompt()
 
-            value = self._ssh.before.decode("utf-8")
+            value = '\n'.join(self._ssh.before.decode("utf-8").splitlines()[1:])
 
             if self._value_template is not None:
                 self._state = self._value_template.render_with_possible_json_value(
