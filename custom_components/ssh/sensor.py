@@ -18,7 +18,7 @@ from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (
     CONF_NAME, CONF_HOST, CONF_USERNAME, CONF_PASSWORD,
     CONF_VALUE_TEMPLATE, CONF_COMMAND, CONF_PORT,
-    STATE_UNKNOWN, CONF_UNIT_OF_MEASUREMENT)
+    STATE_UNKNOWN, CONF_UNIT_OF_MEASUREMENT, CONF_ICON)
 
 __version__ = '0.1.3'
 
@@ -27,6 +27,7 @@ DOMAIN = 'sensor'
 
 DEFAULT_NAME = 'SSH'
 DEFAULT_SSH_PORT = 22
+DEFAULT_ICON = 'mdi:folder-key-network'
 
 MIN_TIME_BETWEEN_UPDATES = timedelta(seconds=30)
 
@@ -39,6 +40,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_COMMAND): cv.string,
     vol.Required(CONF_UNIT_OF_MEASUREMENT): cv.string,
     vol.Optional(CONF_VALUE_TEMPLATE): cv.template,
+    vol.Optional(CONF_ICON): cv.icon,
 })
 
 @asyncio.coroutine
@@ -61,10 +63,14 @@ class SSHSensor(Entity):
         self._command = config.get(CONF_COMMAND)
         self._value_template = config.get(CONF_VALUE_TEMPLATE)
         self._unit_of_measurement = config.get(CONF_UNIT_OF_MEASUREMENT)
+        self._icon = config.get(CONF_ICON)
         self._ssh = None
         self._connected = False
         self._connect()
         self._attributes = {}
+
+        if self._icon is None:
+            self._icon = DEFAULT_ICON
 
         if self._value_template is not None:
             self._value_template.hass = hass
@@ -77,7 +83,7 @@ class SSHSensor(Entity):
     @property
     def icon(self):
         """Icon to use in the frontend, if any."""
-        return 'mdi:folder-key-network'
+        return self._icon
 
     @property
     def state(self):
@@ -133,8 +139,7 @@ class SSHSensor(Entity):
 
         self._ssh = pxssh.pxssh()
         try:
-            self._ssh.login(self._host, self._username,
-                           password=self._password, port=self._port)
+            self._ssh.login(self._host, self._username, password=self._password, port=self._port)
             self._connected = True
         except exceptions.EOF:
             _LOGGER.error("Connection refused. SSH enabled?")
@@ -151,4 +156,3 @@ class SSHSensor(Entity):
             self._ssh = None
 
         self._connected = False
-
